@@ -12,7 +12,7 @@
     "production": "DEBUG=60plus:* NODE_ENV=production PORT=3000 pm2 start ./build/server/start.js && pm2 logs",
     "stop": "pm2 stop all",
     "watch:client": "echo Not Implemented.",
-    "watch:server": "DEBUG=1Up:* NODE_ENV=local nodemon ./src/server/index.js",
+    "watch:server": "DEBUG=60plus:* NODE_ENV=local nodemon ./src/server/index.js",
     "dev": "parallelshell 'npm run watch:client' 'npm run watch:server'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

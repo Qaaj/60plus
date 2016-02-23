@@ -1,77 +1,20 @@
 const debug = require('debug')('60plus:routes');
 //import Models from './models/_all.js';
-
 import express from 'express';
-import jwt from 'jwt-simple';
+
+import user from '../controllers/UserController.js';
+import {isAuthenticated} from '../controllers/Authentication.js';
 
 export function setupRoutes(app, passport) {
 
   const router = express.Router();
 
   // What happens when the user logs in using the API
-
-  router.post('/api/user/login', function (req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
-
-      if (err) return res.status(401).send({error: err});
-
-      if (!user) {
-        if (err) return res.status(401).send({error: err});
-        return res.status(401).send({error: 'Authentication failed'});
-      }
-
-      //user has authenticated correctly thus we create a JWT token
-      var token = jwt.encode({username: req.body.username}, app.get('config').TOKEN_PK);
-      res.json({token: token});
-
-    })(req, res, next);
-  });
+  router.post('/api/user/login', user.login);
 
   // Create a random user using the API
+  router.post('/api/user/create', user.create);
 
-  router.post('/api/user/create', function (req, res, next) {
-    passport.authenticate('create_user', function (err, user, info) {
-
-      if (err) return res.status(401).send({error: err});
-
-      if (!user) {
-        if (err) return res.status(401).send({error: err});ß
-        return res.status(401).send({error: 'Random user creation failed'});
-      }
-
-      //user has authenticated correctly thus we create a JWT token
-      var token = jwt.encode({username: user.username}, app.get('config').TOKEN_PK);
-      res.json({token: token, username: user.username});
-
-    })(req, res, next);
-  });
-
-  var isAuthenticated = function (req, res, next) {
-
-    return next();
-
-    if (req.isAuthenticated()) {
-      return next();
-    } else {
-      if (req.headers.token) { // If not, is there a token in the header?
-
-        try {
-          var decoded = jwt.decode(req.headers.token, app.locals.config.TOKEN_PK);
-        } catch (err) {
-          return res.status(401).send({error: 'Authentication of token failed'});
-        }
-
-        debug('Token decoded: ', decoded);
-        let user = {username: decoded.username};
-
-        req.user = user;
-        next();
-
-      } else {
-        res.status(401).send({error: "Not authenticated"})
-      }
-    }
-  }
 
   // API routes (REST)
   //
