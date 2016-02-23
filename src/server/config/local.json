@@ -1,0 +1,14 @@
+{
+  "port": 3000,
+  "database":
+  {
+    "client": "pg",
+    "connection": {
+      "database": "60plus",
+      "user":     "60plus",
+      "password": "",
+      "port": "5432"
+    }
+  }
+}
+

@@ -1,0 +1,16 @@
+{
+  "default_language": "en",
+  "database":
+  {
+    "client": "pg",
+    "connection": {
+      "host": "localhost",
+      "database": "60plus",
+      "user":     "admin",
+      "password": "",
+      "port": "5432"
+    }
+  }
+}
+
+

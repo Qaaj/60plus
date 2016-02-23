@@ -1,0 +1,11 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".idea/*",
+    ".git",
+    "src/client/*",
+    "src/scss/*",
+    "node_modules/**/node_modules"
+  ],
+  "verbose": true
+}

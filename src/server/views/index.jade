@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        title= '60+'
+        if process.env.NODE_ENV != 'local'
+            link(rel='stylesheet', href='/app.min.css?v=#{deployVersion}')
+        script(type='text/javascript').
+            window.token = '#{token}';
+    body
+        block content
+        #app
+        if process.env.NODE_ENV == 'local'
+            script(src='http://localhost:8081/app.js')
+        else
+            script(src='/vendor.bundle.js?v=#{deployVersion}')
+            script(src='/app.min.js?v=#{deployVersion}')
+                app.min.css
