@@ -2,7 +2,6 @@ import jwt from 'jwt-simple';
 const debug = require('debug')('60plus:routes');
 
 export function isAuthenticated(req,res,next){
-  //return next();
 
   if (req.isAuthenticated()) {
     return next();
@@ -27,5 +26,4 @@ export function isAuthenticated(req,res,next){
       res.status(401).send({error: "No Auth"})
     }
   }
-
 }

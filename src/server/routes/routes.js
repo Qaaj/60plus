@@ -15,22 +15,13 @@ export function setupRoutes(app, passport) {
   // Create a random user using the API
   router.post('/api/user/create', user.create);
 
-
   // API routes (REST)
-  //
-  //router.route('/api/users').post(user.create);
-  //router.route('/api/users').get(isAuthenticated, user.index);
-  //router.route('/api/user/:id').get(isAuthenticated, user.show);
-  //router.route('/api/user/:id').delete(isAuthenticated, user.destroy);
-  //router.route('/api/user/:id').put(isAuthenticated, user.update);
-  //router.route('/api/user/token').post(isAuthenticated, user.addAmazonToken);
-  //
-  //router.route('/api/message/send').post(isAuthenticated, message.send);
 
+  //router.route('/api/user/:id').get(isAuthenticated, user.show);
 
   // INDEX route
+
   router.get('/', (req, res) => {
-    //res.render('index');
     res.render('index');
   });
 

@@ -12,15 +12,8 @@ var createHash = function (password) {
 function create(req, res, next) {
   passport.authenticate('create_user', function (err, user, info) {
 
-    if (err) {
-      debug(err);
-      return res.status(401).send({error: err});
-    }
-
-    if (!user) {
-      debug("oops", user);
-      return res.status(401).send({error: 'Random user creation failed'});
-    }
+    if (err) return res.status(401).send({error: err});
+    if (!user) return res.status(401).send({error: 'Random user creation failed'});
 
     //user has authenticated correctly thus we create a JWT token
     var token = jwt.encode({username: user.username}, req.app.get('config').TOKEN_PK);
@@ -32,14 +25,8 @@ function create(req, res, next) {
 function login(req, res, next) {
   passport.authenticate('local', function (err, user, info) {
 
-    if (err) {
-      debug(err);
-      return res.status(401).send({error: err});
-    }
-
-    if (!user) {
-      return res.status(401).send({error: 'Authentication failed'});
-    }
+    if (err)  return res.status(401).send({error: err});
+    if (!user) return res.status(401).send({error: 'Authentication failed'});
 
     //user has authenticated correctly thus we create a JWT token
     var token = jwt.encode({username: req.body.username}, req.app.get('config').TOKEN_PK);
