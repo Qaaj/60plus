@@ -49,6 +49,7 @@
     "parallelshell": "^2.0.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "pg": "^4.4.6",
     "pm2": "^1.0.1",
     "random-word-generator": "^0.9.9"
   }
